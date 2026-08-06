@@ -21,8 +21,11 @@ export const GitSynapsesSection: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('/api/github-contributions');
-        if (!res.ok) throw new Error('API failed');
+        let res = await fetch('/api/github-contributions');
+        if (!res.ok) {
+          res = await fetch(`${import.meta.env.BASE_URL}data/github_contributions.json`);
+        }
+        if (!res.ok) throw new Error('Contribution data failed');
         const json = await res.json();
         setData(json);
         const years = Object.keys(json);
@@ -31,7 +34,7 @@ export const GitSynapsesSection: React.FC = () => {
           setSelectedYear(maxYear);
         }
       } catch (err) {
-        console.error('Failed to load live git contribution data, generating fallback', err);
+        console.error('Failed to load git contribution data', err);
       } finally {
         setLoading(false);
       }
