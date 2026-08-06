@@ -9,9 +9,8 @@ import { MissionSection } from './components/MissionSection.tsx';
 import { ExperienceSection } from './components/ExperienceSection.tsx';
 import { SkillsSection } from './components/SkillsSection.tsx';
 import { KnowledgeGraphSection } from './components/KnowledgeGraphSection.tsx';
-import { TimelineSection } from './components/TimelineSection.tsx';
-import { EducationSection } from './components/EducationSection.tsx';
-import { AchievementsSection } from './components/AchievementsSection.tsx';
+import { GitSynapsesSection } from './components/GitSynapsesSection.tsx';
+import { BlogSection } from './components/BlogSection.tsx';
 import { ResearchSection } from './components/ResearchSection.tsx';
 import { ResumeSection } from './components/ResumeSection.tsx';
 import { ContactSection } from './components/ContactSection.tsx';
@@ -92,8 +91,7 @@ export default function App() {
 
     const sections = [
       'chat', 'about', 'projects', 'mission', 'experience', 
-      'skills', 'graph', 'timeline', 'education', 
-      'achievements', 'research', 'resume', 'contact'
+      'skills', 'graph', 'activity', 'blogs', 'research', 'resume', 'contact'
     ];
 
     const observers = sections.map(id => {
@@ -159,7 +157,7 @@ export default function App() {
                 COGNITIVE VAULT
               </h1>
               <div className="space-y-1">
-                <h2 className="font-grotesk text-3xl font-bold text-white">Dedipya Goswami</h2>
+                <h2 className="font-grotesk text-3xl font-bold text-[#FFFFFF]">Dedipya Goswami</h2>
                 <p className="text-xs text-zinc-500 font-mono tracking-widest uppercase">
                   A living representation of my engineering mind.
                 </p>
@@ -193,9 +191,8 @@ export default function App() {
           <ExperienceSection />
           <SkillsSection />
           <KnowledgeGraphSection />
-          <TimelineSection />
-          <EducationSection />
-          <AchievementsSection />
+          <GitSynapsesSection />
+          <BlogSection />
           <ResearchSection />
           <ResumeSection />
           <ContactSection />

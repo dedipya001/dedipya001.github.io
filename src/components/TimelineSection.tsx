@@ -11,24 +11,17 @@ interface Event {
 
 const JOURNEY_EVENTS: Event[] = [
   {
-    year: "2026",
-    title: "AI & Backend Engineer",
-    subtitle: "Sellegic India",
-    description: "Designing advanced vector databases, Broker Layers, and RAG pipelines for article automation and client-facing systems.",
+    year: "2025 - Present",
+    title: "AI & Backend Developer",
+    subtitle: "Selegic Inc",
+    description: "Designing advanced vector databases, Broker Layers, MCP servers, and RAG pipelines for article automation and CPQ systems.",
     type: "work"
   },
   {
-    year: "2024",
-    title: "B.Tech CSE - 3rd Year",
-    subtitle: "SRM University AP",
-    description: "Maintained a strong 8.35 CGPA, completing projects in database indices, networking layers, and OS thread schedulers.",
-    type: "edu"
-  },
-  {
-    year: "2023",
-    title: "Backend Developer Intern",
-    subtitle: "Sellegic India",
-    description: "Built REST API schemas, resolved synchrony conflicts, and maintained unit test suites with Jest.",
+    year: "2024 - 2025",
+    title: "DevOps Engineer Intern",
+    subtitle: "Belzabar Software Design",
+    description: "Automated CI/CD pipelines and infrastructure provisioning using Terraform, Python, and Bash, accelerating releases by 22%.",
     type: "work"
   },
   {

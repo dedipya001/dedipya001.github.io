@@ -35,6 +35,7 @@ export const InteractiveBrain: React.FC = () => {
   const labelRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   const [activeRegion, setActiveRegion] = useState<string | null>(null);
+  const [hasWebGLError, setHasWebGLError] = useState<boolean>(false);
 
   const targetCameraPos = useRef(new THREE.Vector3(0, 0, 155));
   const targetLookAt = useRef(new THREE.Vector3(0, 0, 0));
@@ -56,18 +57,39 @@ export const InteractiveBrain: React.FC = () => {
     overlay.width = width;
     overlay.height = height;
 
-    // 1. Three.js Scene setup
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(40, width / height, 1, 1000);
-    camera.position.set(0, 0, 150);
+    // Handle WebGL context lost
+    const handleContextLost = (e: Event) => {
+      e.preventDefault();
+      console.warn('WebGL Context Lost. Switching to 2D Canvas Fallback.');
+      setHasWebGLError(true);
+    };
+    canvas.addEventListener('webglcontextlost', handleContextLost, false);
 
-    const renderer = new THREE.WebGLRenderer({
-      canvas,
-      alpha: true,
-      antialias: true
-    });
-    renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    // 1. Three.js Scene setup with try-catch safety
+    let scene: THREE.Scene;
+    let camera: THREE.PerspectiveCamera;
+    let renderer: THREE.WebGLRenderer | null = null;
+
+    try {
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(40, width / height, 1, 1000);
+      camera.position.set(0, 0, 150);
+
+      renderer = new THREE.WebGLRenderer({
+        canvas,
+        alpha: true,
+        antialias: true,
+        failIfMajorPerformanceCaveat: false
+      });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    } catch (err) {
+      console.warn('WebGL Renderer initialization failed. Falling back to 2D Canvas Neural Mode:', err);
+      setHasWebGLError(true);
+      return () => {
+        canvas.removeEventListener('webglcontextlost', handleContextLost);
+      };
+    }
 
     const brainGroup = new THREE.Group();
     scene.add(brainGroup);
@@ -503,8 +525,13 @@ export const InteractiveBrain: React.FC = () => {
       window.removeEventListener('cognitive-search', handleSearchPulse);
       window.removeEventListener('cognitive-hover', handleCognitiveHover);
       window.removeEventListener('cognitive-navigate', handleCognitiveNavigate);
+      canvas.removeEventListener('webglcontextlost', handleContextLost);
       cancelAnimationFrame(animFrame.current);
-      renderer.dispose();
+      if (renderer) {
+        try {
+          renderer.dispose();
+        } catch (e) {}
+      }
     };
   }, []);
 

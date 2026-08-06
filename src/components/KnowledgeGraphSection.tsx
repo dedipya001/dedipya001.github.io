@@ -37,12 +37,12 @@ const NODES_DATA: GraphNode[] = [
   { id: 't9', label: 'AWS', type: 'tech', details: 'Cloud hosting provider, utilizing EC2 instances, S3 storage, and database replicas.' },
 
   // Experiences
-  { id: 'e1', label: 'Sellegic Dev', type: 'experience', details: 'AI & Backend Developer at Sellegic. Led Encye RAG integration and optimized API speed by 30%.' },
-  { id: 'e2', label: 'Sellegic Intern', type: 'experience', details: 'Backend Intern at Sellegic. Wrote Express REST routers and maintained 90%+ Jest test coverage.' },
-  { id: 'e3', label: 'IndustrialOts', type: 'experience', details: 'Core Team Member. Coordinated developer hackathons (200+ attendees) and outreach.' },
+  { id: 'e1', label: 'Selegic Inc', type: 'experience', details: 'AI & Backend Developer at Selegic Inc. Spearheading Encye RAG integration, MCP servers, and Salesforce CPQ Assistant.' },
+  { id: 'e2', label: 'Belzabar Intern', type: 'experience', details: 'DevOps Engineer Intern at Belzabar Software Design. Automated CI/CD pipelines, IaC Terraform, and AWS observability.' },
+  { id: 'e3', label: 'Dot Sphere Intern', type: 'experience', details: 'Full Stack Web Developer Intern at Dot Sphere. Built interactive features and optimized SEO.' },
 
   // Education
-  { id: 'ed1', label: 'B.Tech SRM AP', type: 'education', details: 'Computer Science & Engineering degree. Current CGPA: 8.35. Focused on DBMS, networks, and algorithms.' },
+  { id: 'ed1', label: 'B.Tech SRM AP', type: 'education', details: 'Computer Science & Engineering degree at SRM University AP. CGPA: 8.83/10 with 100% Scholarship.' },
 
   // Achievements
   { id: 'a1', label: '17+ Projects', type: 'achievement', details: 'Successfully built and delivered 17+ software projects covering web apps, backend APIs, and CLI tools.' },
