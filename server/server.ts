@@ -272,11 +272,11 @@ app.get('/api/github-contributions', async (req, res) => {
   // 2. Query GitHub or generate fallback
   try {
     const years = [2023, 2024, 2025, 2026];
-    const personalToken = process.env.GITHUB_PERSONAL_TOKEN;
-    const workToken = process.env.GITHUB_WORK_TOKEN;
+    const personalToken = process.env.PERSONAL_TOKEN;
+    const workToken = process.env.WORK_TOKEN;
 
     if (!personalToken || !workToken) {
-      throw new Error('Missing GITHUB_PERSONAL_TOKEN or GITHUB_WORK_TOKEN');
+      throw new Error('Missing PERSONAL_TOKEN or WORK_TOKEN');
     }
 
     const mergedData: any = {};
