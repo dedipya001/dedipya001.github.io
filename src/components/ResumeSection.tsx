@@ -127,9 +127,9 @@ export const ResumeSection: React.FC = () => {
                 <Github className="w-3.5 h-3.5" />
                 <span>dedipya001</span>
               </a>
-              <a href="https://linkedin.com/in/dedipyagoswami" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-zinc-400 hover:text-white transition-colors">
+              <a href="https://www.linkedin.com/in/dedipya-goswami001/" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 text-zinc-400 hover:text-white transition-colors">
                 <Linkedin className="w-3.5 h-3.5 text-cyan-400" />
-                <span>dedipyagoswami</span>
+                <span>dedipya-goswami001</span>
               </a>
             </div>
           </div>

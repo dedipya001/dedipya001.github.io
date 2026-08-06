@@ -5,7 +5,7 @@ export const ContactSection: React.FC = () => {
   const contactLinks = [
     { icon: Mail, label: 'Email', value: 'dedipyagoswami001@gmail.com', href: 'mailto:dedipyagoswami001@gmail.com', color: '#8B5CF6' },
     { icon: Phone, label: 'Phone', value: '+91-9832994010', href: 'tel:+919832994010', color: '#10B981' },
-    { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/dedipyagoswami', href: 'https://linkedin.com/in/dedipyagoswami', color: '#06B6D4' },
+    { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/dedipya-goswami001', href: 'https://www.linkedin.com/in/dedipya-goswami001/', color: '#06B6D4' },
     { icon: Github, label: 'GitHub', value: 'github.com/dedipya001', href: 'https://github.com/dedipya001', color: '#EC4899' }
   ];
 
