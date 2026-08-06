@@ -38,7 +38,10 @@ export const BlogSection: React.FC = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await fetch('/api/medium-blogs');
+        let res = await fetch('/api/medium-blogs');
+        if (!res.ok) {
+          res = await fetch(`${import.meta.env.BASE_URL}data/medium_blogs.json`);
+        }
         if (!res.ok) throw new Error('Failed to fetch medium articles');
         const json = await res.json();
         
@@ -558,4 +561,3 @@ export const BlogSection: React.FC = () => {
     </section>
   );
 };
-
