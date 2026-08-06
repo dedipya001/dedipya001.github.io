@@ -4,6 +4,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { InteractiveBrain } from './InteractiveBrain.tsx';
+import { ErrorBoundary } from './ErrorBoundary.tsx';
 
 interface Citation {
   id: string;
@@ -23,17 +24,72 @@ interface Message {
 }
 
 const SUGGESTED_QUESTIONS = [
-  "How did the RAG platform evolve?",
-  "Which project changed your perspective on software engineering?",
-  "Show backend architecture decisions.",
-  "Explain the Encye RAG implementation.",
-  "Show memories connected to Python.",
-  "How are AI and Backend connected?",
-  "Show leadership experiences.",
-  "What challenge taught the biggest lesson?",
-  "How has your architecture thinking evolved?",
-  "Show systems built using Node.js."
+  "Tell me about your Backend Developer role at Selegic.",
+  "What AI features did you build for the Encye platform?",
+  "How did you optimize AWS costs by 15% at Belzabar?",
+  "Tell me about your RAG Salesforce CPQ Assistant.",
+  "What is One Interview and how does it secure accounts?",
+  "Tell me about your IEEE research paper on TrashTrace.",
+  "What did you achieve as Deputy Leader of IndustreeOwl?"
 ];
+
+const formatMarkdown = (text: string) => {
+  if (!text) return '';
+  const lines = text.split('\n');
+  return lines.map((line, lineIdx) => {
+    const isBullet = line.trim().startsWith('- ') || line.trim().startsWith('* ');
+    const isNum = /^\d+\.\s/.test(line.trim());
+    
+    let cleanLine = line;
+    if (isBullet) {
+      cleanLine = line.trim().replace(/^[-*]\s+/, '');
+    } else if (isNum) {
+      cleanLine = line.trim().replace(/^\d+\.\s+/, '');
+    }
+    
+    const parts = cleanLine.split(/(\*\*.*?\*\*)/g);
+    const parsedElements = parts.map((part, partIdx) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        const innerText = part.slice(2, -2);
+        return (
+          <strong 
+            key={partIdx} 
+            className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-neuralPurple via-neuralPurple/90 to-neuralMagenta drop-shadow-[0_0_8px_rgba(139,92,246,0.2)]"
+          >
+            {innerText}
+          </strong>
+        );
+      }
+      return part;
+    });
+
+    if (isBullet) {
+      return (
+        <div key={lineIdx} className="flex items-start gap-2 my-1.5 pl-2">
+          <span className="text-neuralMagenta font-bold shrink-0">•</span>
+          <span className="text-zinc-200">{parsedElements}</span>
+        </div>
+      );
+    }
+    
+    if (isNum) {
+      const numMatch = line.match(/^(\d+)\.\s+/);
+      const num = numMatch ? numMatch[1] : (lineIdx + 1);
+      return (
+        <div key={lineIdx} className="flex items-start gap-2 my-1.5 pl-2">
+          <span className="text-neuralPurple font-mono font-bold shrink-0">{num}.</span>
+          <span className="text-zinc-200">{parsedElements}</span>
+        </div>
+      );
+    }
+    
+    return (
+      <p key={lineIdx} className="min-h-[1.2em] my-1 text-zinc-200">
+        {parsedElements}
+      </p>
+    );
+  });
+};
 
 export const ChatSection: React.FC = () => {
   const [query, setQuery] = useState('');
@@ -156,7 +212,7 @@ export const ChatSection: React.FC = () => {
                     last.loading = false;
                     last.citations = [
                       { id: '1', title: 'Encye RAG integration package', source: 'projects', category: 'Project', confidence: 98 },
-                      { id: '2', title: 'AI & Backend Developer - Sellegic India', source: 'experience', category: 'Experience', confidence: 95 }
+                      { id: '2', title: 'AI & Backend Developer - Selegic Inc', source: 'experience', category: 'Experience', confidence: 95 }
                     ];
                     last.confidence = 96;
                   }
@@ -214,9 +270,12 @@ export const ChatSection: React.FC = () => {
             <HelpCircle className="w-3.5 h-3.5" />
             Activate connected memories
           </h3>
-          <div className="flex flex-wrap gap-1.5 max-h-[160px] overflow-y-auto pr-1">
+          <div 
+            data-lenis-prevent 
+            className="flex flex-wrap gap-2 max-h-[130px] overflow-y-auto pr-1.5 suggested-scroll"
+          >
             {SUGGESTED_QUESTIONS.map((question, qIdx) => {
-              const suggestedRegions = ['projects', 'experience', 'projects', 'projects', 'experience', 'skills'];
+              const suggestedRegions = ['experience', 'projects', 'experience', 'projects', 'projects', 'achievements', 'experience'];
               const targetRegion = suggestedRegions[qIdx] || 'projects';
               return (
                 <button
@@ -240,15 +299,27 @@ export const ChatSection: React.FC = () => {
 
   return (
     <section id="chat" className="min-h-screen py-16 flex flex-col justify-center relative px-4 sm:px-6 lg:px-8 max-w-6xl w-full mx-auto z-10">
+      <style>{`
+        .suggested-scroll::-webkit-scrollbar {
+          width: 4px;
+        }
+        .suggested-scroll::-webkit-scrollbar-track {
+          background: rgba(255, 255, 255, 0.02);
+          border-radius: 4px;
+        }
+        .suggested-scroll::-webkit-scrollbar-thumb {
+          background: rgba(139, 92, 246, 0.3);
+          border-radius: 4px;
+        }
+        .suggested-scroll::-webkit-scrollbar-thumb:hover {
+          background: rgba(139, 92, 246, 0.6);
+        }
+      `}</style>
 
       {/* 3-Column Landing centerpiece grid */}
       <div className="w-full flex flex-col items-center">
         {/* 1. Hero Title / Branding */}
         <div className="text-center mb-10 max-w-3xl mx-auto flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-neuralPurple/20 bg-neuralPurple/5 text-neuralPurple text-xs font-grotesk tracking-wide mb-4 select-none">
-            <Sparkles className="w-3.5 h-3.5 text-neuralMagenta animate-pulse" />
-            <span>MY COGNITIVE VAULT</span>
-          </div>
           <h1 className="font-grotesk font-bold text-4xl sm:text-5xl lg:text-6xl text-white mb-4 tracking-tight leading-[1.15]">
             Welcome to <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-neuralPurple via-neuralMagenta to-warmLavender">My Cognitive Vault</span>
           </h1>
@@ -287,7 +358,9 @@ export const ChatSection: React.FC = () => {
 
           {/* Center Column: Interactive Connectome Brain Centerpiece */}
           <div className="lg:col-span-6 flex justify-center items-center relative w-full h-[480px] overflow-visible">
-            <InteractiveBrain />
+            <ErrorBoundary>
+              <InteractiveBrain />
+            </ErrorBoundary>
           </div>
 
           {/* Right Column: Featured Projects & Core Skills */}
@@ -299,7 +372,7 @@ export const ChatSection: React.FC = () => {
               <div className="text-[9px] text-zinc-500 font-mono uppercase tracking-widest mb-2 font-semibold">Left Hemisphere</div>
               <h3 className="font-grotesk font-bold text-base text-white group-hover:text-[#EC4899] transition-colors">Featured Projects</h3>
               <p className="text-zinc-400 text-xs font-sans mt-2.5 leading-relaxed">
-                Encye RAG integration (pip package, 40% document review latency reduction) and Sellegic CPQ assistant.
+                Encye RAG integration (pip package, 40% document review latency reduction) and Selegic Inc CPQ assistant.
               </p>
             </div>
 
@@ -408,7 +481,7 @@ export const ChatSection: React.FC = () => {
                           <span>Activating brain synapses...</span>
                         </div>
                       ) : (
-                        msg.content && <div className="whitespace-pre-line text-zinc-200 text-[13.5px] leading-relaxed">{msg.content}</div>
+                        msg.content && <div className="space-y-1 text-zinc-200 text-[13.5px] leading-relaxed">{formatMarkdown(msg.content)}</div>
                       )}
                     </div>
                   </div>

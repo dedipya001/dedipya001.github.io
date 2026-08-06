@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { 
   MessageSquare, User, Code2, Target, Briefcase, Cpu, 
   Network, Milestone, GraduationCap, Trophy, BookOpen, 
-  FileText, Mail, Menu, X 
+  FileText, Mail, Menu, X, Github, Newspaper
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { NeuralLogo } from './NeuralLogo.tsx';
@@ -21,9 +21,8 @@ export const navItems: NavItem[] = [
   { id: 'experience', label: 'Professional Cortex', icon: Briefcase },
   { id: 'skills', label: 'Neural Connections', icon: Cpu },
   { id: 'graph', label: 'Cognitive Network', icon: Network },
-  { id: 'timeline', label: 'Memory Timeline', icon: Milestone },
-  { id: 'education', label: 'Foundations', icon: GraduationCap },
-  { id: 'achievements', label: 'Achievements', icon: Trophy },
+  { id: 'activity', label: 'Git Synapses', icon: Github },
+  { id: 'blogs', label: 'Medium Synapses', icon: Newspaper },
   { id: 'research', label: 'Research & Learning', icon: BookOpen },
   { id: 'resume', label: 'Knowledge Snapshot', icon: FileText },
   { id: 'contact', label: 'Connect', icon: Mail },

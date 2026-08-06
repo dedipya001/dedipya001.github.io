@@ -1,12 +1,12 @@
 import React from 'react';
-import { Mail, Linkedin, Github, Twitter, MapPin, Calendar, Sparkles } from 'lucide-react';
+import { Mail, Linkedin, Github, Phone, MapPin, Calendar, Sparkles } from 'lucide-react';
 
 export const ContactSection: React.FC = () => {
   const contactLinks = [
-    { icon: Mail, label: 'Email', value: 'dedipya@example.com', href: 'mailto:dedipya@example.com', color: '#8B5CF6' },
-    { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/dedipya', href: 'https://linkedin.com/in/dedipya', color: '#06B6D4' },
-    { icon: Github, label: 'GitHub', value: 'github.com/dedipya', href: 'https://github.com/dedipya', color: '#3B82F6' },
-    { icon: Twitter, label: 'Twitter', value: 'twitter.com/dedipya', href: 'https://twitter.com/dedipya', color: '#EC4899' }
+    { icon: Mail, label: 'Email', value: 'dedipyagoswami001@gmail.com', href: 'mailto:dedipyagoswami001@gmail.com', color: '#8B5CF6' },
+    { icon: Phone, label: 'Phone', value: '+91-9832994010', href: 'tel:+919832994010', color: '#10B981' },
+    { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/dedipyagoswami', href: 'https://linkedin.com/in/dedipyagoswami', color: '#06B6D4' },
+    { icon: Github, label: 'GitHub', value: 'github.com/dedipya001', href: 'https://github.com/dedipya001', color: '#EC4899' }
   ];
 
   return (

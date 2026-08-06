@@ -63,11 +63,11 @@ export const initialDocuments: RAGDocument[] = [
   // --- EXPERIENCE ---
   {
     id: "exp-1",
-    title: "Backend Developer at Selegic India Pvt. Ltd.",
+    title: "AI & Backend Developer at Selegic Inc",
     category: "experience",
     tags: ["experience", "Selegic", "Python", "Node.js", "MCP", "RAG", "Salesforce CPQ"],
     source: "experience/selegic_developer.md",
-    content: "Backend Developer at Selegic India Pvt. Ltd. (Oct 2025 - Present). Developing backend services and AI-driven capabilities for Encye, a SaaS collaboration platform. Built and deployed Model Context Protocol (MCP) servers and integrated LLM workflows for article generation using specialized SME persona tools. Designed and implemented the RAG-powered Salesforce CPQ Assistant and metadata pipelines."
+    content: "AI & Backend Developer at Selegic Inc (Oct 2025 - Present). Developing backend services and AI-driven capabilities for Encye, a SaaS collaboration platform. Built and deployed Model Context Protocol (MCP) servers and integrated LLM workflows for article generation using specialized SME persona tools. Designed and implemented the RAG-powered Salesforce CPQ Assistant and metadata pipelines."
   },
   {
     id: "exp-2",
@@ -114,7 +114,7 @@ export const initialDocuments: RAGDocument[] = [
     content: "B.Tech in Computer Science Engineering at SRM University, AP (2021 - 2025) with a CGPA of 8.83/10. Awarded a 100% academic performance scholarship. Completed Class 12th CBSE in 2021 (93.8%) and Class 10th CBSE in 2019 (94.4%) at Hem Sheela Model School."
   },
 
-  // --- ACHIEVEMENTS ---
+  // --- ACHIEVEMENTS & BLOGS ---
   {
     id: "ach-1",
     title: "Achievements, Hackathons, and Scholarships",
@@ -122,5 +122,13 @@ export const initialDocuments: RAGDocument[] = [
     tags: ["achievements", "scholarships", "hackathons", "IEEE"],
     source: "achievements/awards.md",
     content: "Eearned a 100% tuition scholarship at SRM University AP based on academic success. Secured a top 5 position out of 70 competing teams at the HackSRM 5.0 national hackathon with the project 'Camera Doodler'. Co-authored and presented a research paper on computer vision garbage monitoring at an IEEE conference in 2025. Deputy Leader and Core Team Member at IndustreeOwl managing 3 teams."
+  },
+  {
+    id: "blog-1",
+    title: "Medium Blog Publications by Dedipya Goswami",
+    category: "other",
+    tags: ["blogs", "medium", "articles", "RAG", "DevOps", "FastAPI"],
+    source: "medium/dedipyagoswami001.md",
+    content: "Dedipya Goswami writes technical software engineering articles on Medium under username @dedipyagoswami001 (https://medium.com/@dedipyagoswami001). His articles cover topics like High-Precision RAG Pipelines with Vector Search, Salesforce CPQ Automation with LLMs and FastAPI, DevOps Infrastructure as Code with Terraform & AWS, and Real-Time Surveillance Analytics from IEEE research."
   }
 ];

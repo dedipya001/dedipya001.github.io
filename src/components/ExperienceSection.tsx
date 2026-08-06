@@ -18,8 +18,8 @@ interface Job {
 const JOBS_DATA: Job[] = [
   {
     id: "selegic-dev",
-    role: "Backend Developer",
-    company: "Selegic India Pvt. Ltd.",
+    role: "AI & Backend Developer",
+    company: "Selegic Inc",
     period: "Oct 2025 – Present",
     summary: "Developing backend services and AI-driven capabilities for Encye, a SaaS knowledge sharing platform, and building Model Context Protocol (MCP) servers and RAG CPQ systems.",
     responsibilities: [

@@ -49,11 +49,11 @@
   },
   {
     "id": "exp-1",
-    "title": "Backend Developer at Selegic India Pvt. Ltd.",
+    "title": "AI & Backend Developer at Selegic Inc",
     "category": "experience",
     "tags": ["experience", "Selegic", "Python", "Node.js", "MCP", "RAG", "Salesforce CPQ"],
     "source": "experience/selegic_developer.md",
-    "content": "Backend Developer at Selegic India Pvt. Ltd. (Oct 2025 - Present). Developing backend services and AI-driven capabilities for Encye, a SaaS collaboration platform. Built and deployed Model Context Protocol (MCP) servers and integrated LLM workflows for article generation using specialized SME persona tools. Designed and implemented the RAG-powered Salesforce CPQ Assistant and metadata pipelines."
+    "content": "AI & Backend Developer at Selegic Inc (Oct 2025 - Present). Developing backend services and AI-driven capabilities for Encye, a SaaS collaboration platform. Built and deployed Model Context Protocol (MCP) servers and integrated LLM workflows for article generation using specialized SME persona tools. Designed and implemented the RAG-powered Salesforce CPQ Assistant and metadata pipelines."
   },
   {
     "id": "exp-2",

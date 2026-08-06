@@ -45,7 +45,7 @@ export const ResearchSection: React.FC = () => {
                 <span className="font-mono text-xs text-zinc-500">// STUDY LOG: SYSTEMS ENGINE</span>
                 <h4 className="font-grotesk font-bold text-base text-white mt-1 mb-2">Subject: Designing compound indexing strategies</h4>
                 <p className="leading-relaxed">
-                  Profiling Sellegic MongoDB databases showed single indexes are insufficient for query pipelines filtering both category and timestamps. Added compound indexes, resulting in a 30% reduction in query wait time and overall API response speeds.
+                  Profiling Selegic Inc MongoDB databases showed single indexes are insufficient for query pipelines filtering both category and timestamps. Added compound indexes, resulting in a 30% reduction in query wait time and overall API response speeds.
                 </p>
               </div>
             </div>

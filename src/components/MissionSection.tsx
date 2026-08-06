@@ -25,7 +25,7 @@ export const MissionSection: React.FC = () => {
       "Vector index sync: No changes detected in about_me.txt",
       "Cosine overlap audit: query 'Encye' triggered project indexing (relevance: 0.985)",
       "Garbage collection executed on local session state.",
-      "Optimized compound database indexes on Sellegic production replica.",
+      "Optimized compound database indexes on Selegic Inc production replica.",
       "Ingesting new blog node chunk #04: 'Understanding sliding-window embeddings'",
       "Incoming chat payload validated by Broker Layer (status: APPROVED)"
     ];
