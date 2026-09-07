@@ -1,0 +1,39 @@
+{
+  "companyName": "Magica",
+  "roleTitle": "Software Engineer (Backend-Heavy)",
+  "companyUrl": "https://magica.com/",
+  "jobUrl": "https://magica.com/careers/software-engineer-backend-heavy",
+  "applicationTheme": "Backend-heavy agent systems, connected services, fast execution and coding-agent-first development",
+  "intro": "I am applying because the role overlaps strongly with the systems I already build: backend platforms, RAG and LLM workflows, MCP/tool integrations, connected services, and AI-assisted engineering.",
+  "roleNeeds": [
+    "Backend-heavy product engineering",
+    "Agent / AI product experience",
+    "Connected services and external API integrations",
+    "Fast execution from ambiguous requirements",
+    "Coding-agent-first engineering",
+    "Production monitoring, reliability and iteration"
+  ],
+  "fitMappings": [
+    {
+      "need": "Backend-heavy product engineering",
+      "proof": "Encye production backend: version control, department design, comments, tagging, notifications, login/auth and other platform services."
+    },
+    {
+      "need": "Agent / AI product experience",
+      "proof": "MCP-powered workflows, enterprise RAG, LLM applications and a Salesforce CPQ knowledge/configuration assistant."
+    },
+    {
+      "need": "Connected services",
+      "proof": "Automation-team experience integrating provider APIs including Google, Zapier, Salesforce and Slack."
+    },
+    {
+      "need": "Coding-agent-first engineering",
+      "proof": "I actively build with Codex and Claude through OpenRouter, while owning architecture, review, debugging and final production decisions."
+    },
+    {
+      "need": "Proof of shipping",
+      "proof": "Production SaaS work, a fully owned RAG system, public GitHub projects, live GitHub/Medium integrations and deployable demos."
+    }
+  ],
+  "closing": "The overlap is practical rather than theoretical: I already work on backend systems for AI products, external integrations and agent-assisted delivery, and I want to do more of that at product depth."
+}
