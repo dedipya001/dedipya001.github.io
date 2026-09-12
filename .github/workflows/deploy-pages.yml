@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+  schedule:
+    - cron: '17 */6 * * *'
   workflow_dispatch:
 
 permissions:
@@ -30,6 +32,14 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Refresh GitHub contribution data
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_OWNER: dedipya001
+          PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+          WORK_TOKEN: ${{ secrets.WORK_TOKEN }}
+        run: node scripts/update-github-contributions.mjs
 
       - name: Build portfolio
         run: npm run build
