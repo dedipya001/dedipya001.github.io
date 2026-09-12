@@ -9,7 +9,7 @@ import { MissionSection } from './components/MissionSection.tsx';
 import { ExperienceSection } from './components/ExperienceSection.tsx';
 import { SkillsSection } from './components/SkillsSection.tsx';
 import { KnowledgeGraphSection } from './components/KnowledgeGraphSection.tsx';
-import { GitSynapsesSection } from './components/GitSynapsesSection.tsx';
+import { FreshGitSynapsesSection } from './components/FreshGitSynapsesSection.tsx';
 import { BlogSection } from './components/BlogSection.tsx';
 import { ResearchSection } from './components/ResearchSection.tsx';
 import { ResumeSection } from './components/ResumeSection.tsx';
@@ -191,7 +191,7 @@ export default function App() {
           <ExperienceSection />
           <SkillsSection />
           <KnowledgeGraphSection />
-          <GitSynapsesSection />
+          <FreshGitSynapsesSection />
           <BlogSection />
           <ResearchSection />
           <ResumeSection />
