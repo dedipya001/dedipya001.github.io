@@ -13,6 +13,11 @@ interface RAGDocument {
 export const AdminSection: React.FC = () => {
   const [documents, setDocuments] = useState<RAGDocument[]>([]);
   const [loading, setLoading] = useState(false);
+  const [adminKey, setAdminKey] = useState(() => sessionStorage.getItem('portfolio-admin-key') || '');
+  const [keyInput, setKeyInput] = useState('');
+  const apiOrigin = window.location.hostname === 'dedipya001.github.io'
+    ? 'https://dedipyaaag.netlify.app' : '';
+  const adminUrl = `${apiOrigin}/api/admin/documents`;
   
   // Form State
   const [title, setTitle] = useState('');
@@ -25,15 +30,26 @@ export const AdminSection: React.FC = () => {
 
   // Fetch documents
   const fetchDocs = async () => {
+    if (!adminKey) return;
     setLoading(true);
     try {
-      const response = await fetch('/api/admin/documents');
+      const response = await fetch(adminUrl, { headers: { 'X-Admin-Token': adminKey } });
+      if (response.status === 401) {
+        sessionStorage.removeItem('portfolio-admin-key');
+        setAdminKey('');
+        setMessage('Invalid admin key. Please try again.');
+        return;
+      }
       if (response.ok) {
         const data = await response.json();
         setDocuments(data);
+        setMessage('');
+      } else {
+        setMessage(`Could not load documents (HTTP ${response.status}).`);
       }
     } catch (err) {
       console.error('Failed to fetch documents', err);
+      setMessage('Could not connect to the document API.');
     } finally {
       setLoading(false);
     }
@@ -41,7 +57,7 @@ export const AdminSection: React.FC = () => {
 
   useEffect(() => {
     fetchDocs();
-  }, []);
+  }, [adminKey]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,9 +67,9 @@ export const AdminSection: React.FC = () => {
     }
 
     try {
-      const response = await fetch('/api/admin/documents', {
+      const response = await fetch(adminUrl, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'X-Admin-Token': adminKey },
         body: JSON.stringify({
           title,
           content,
@@ -88,8 +104,9 @@ export const AdminSection: React.FC = () => {
     if (!confirm('Are you sure you want to delete this document from the vector space?')) return;
 
     try {
-      const response = await fetch(`/api/admin/documents/${id}`, {
-        method: 'DELETE'
+      const response = await fetch(`${adminUrl}/${encodeURIComponent(id)}`, {
+        method: 'DELETE',
+        headers: { 'X-Admin-Token': adminKey },
       });
 
       if (response.ok) {
@@ -125,8 +142,27 @@ export const AdminSection: React.FC = () => {
           </a>
         </div>
 
+        {!adminKey && (
+          <form onSubmit={(e) => {
+            e.preventDefault();
+            if (!keyInput.trim()) return;
+            sessionStorage.setItem('portfolio-admin-key', keyInput.trim());
+            setAdminKey(keyInput.trim());
+            setKeyInput('');
+          }} className="mt-6 rounded-lg border border-slate-700 bg-slate-800 p-5">
+            <label htmlFor="admin-key" className="block text-sm text-slate-200 mb-2">Admin key</label>
+            <div className="flex gap-2">
+              <input id="admin-key" type="password" autoComplete="off" value={keyInput}
+                onChange={(e) => setKeyInput(e.target.value)}
+                className="flex-1 rounded bg-slate-900 border border-slate-600 px-3 py-2 text-white" />
+              <button type="submit" className="rounded bg-indigo-600 px-4 py-2 text-white">Unlock</button>
+            </div>
+            {message && <p role="alert" className="mt-2 text-sm text-amber-300">{message}</p>}
+          </form>
+        )}
+
         {/* Content grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {adminKey && <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-6">
           
           {/* Left Panel: Form */}
           <div className="lg:col-span-1 bg-slate-850 border border-slate-700 rounded-lg p-5">
@@ -273,7 +309,7 @@ export const AdminSection: React.FC = () => {
             )}
           </div>
 
-        </div>
+        </div>}
       </div>
     </div>
   );

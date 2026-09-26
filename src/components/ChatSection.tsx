@@ -157,7 +157,9 @@ export const ChatSection: React.FC = () => {
     logTimeouts.push(setTimeout(() => pushLog("Connecting related experiences..."), 1000));
 
     try {
-      const response = await fetch('/api/chat', {
+      const apiOrigin = window.location.hostname === 'dedipya001.github.io'
+        ? 'https://dedipyaaag.netlify.app' : '';
+      const response = await fetch(`${apiOrigin}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -177,6 +179,9 @@ export const ChatSection: React.FC = () => {
 
       const decoder = new TextDecoder('utf-8');
       let resultText = '';
+      let pending = '';
+      let citations: Citation[] = [];
+      let confidence = 0;
 
       logTimeouts.forEach(clearTimeout);
 
@@ -187,14 +192,18 @@ export const ChatSection: React.FC = () => {
         const { value, done } = await reader.read();
         if (done) break;
 
-        const chunk = decoder.decode(value);
-        const lines = chunk.split('\n');
+        pending += decoder.decode(value, { stream: true });
+        const lines = pending.split('\n');
+        pending = lines.pop() || '';
 
         for (const line of lines) {
           if (line.startsWith('data: ')) {
             try {
               const data = JSON.parse(line.slice(6));
-              if (data.type === 'content') {
+              if (data.type === 'meta') {
+                citations = Array.isArray(data.citations) ? data.citations : [];
+                confidence = Number(data.confidence) || 0;
+              } else if (data.type === 'content') {
                 resultText += data.content;
                 setMessages(prev => {
                   const copy = [...prev];
@@ -210,11 +219,8 @@ export const ChatSection: React.FC = () => {
                   const last = copy[copy.length - 1];
                   if (last && last.role === 'assistant') {
                     last.loading = false;
-                    last.citations = [
-                      { id: '1', title: 'Encye RAG integration package', source: 'projects', category: 'Project', confidence: 98 },
-                      { id: '2', title: 'AI & Backend Developer - Selegic Inc', source: 'experience', category: 'Experience', confidence: 95 }
-                    ];
-                    last.confidence = 96;
+                    last.citations = citations;
+                    last.confidence = confidence;
                   }
                   return copy;
                 });
