@@ -1,0 +1,4 @@
+/api/github-contributions https://dedipya001.github.io/data/github_contributions.json 200
+/data/github_contributions.json https://dedipya001.github.io/data/github_contributions.json 200!
+/api/medium-blogs /data/medium_blogs.json 200
+/* /index.html 200
